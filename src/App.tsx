@@ -35,7 +35,7 @@ function App() {
                 } catch (error) {
                     // In the event of an error, redirect the user to account.mapbox.com
                     const routeTo = `${window.location.protocol}//${window.location.host}`
-                    window.open(window.location.href = `${origin}/?redirect=${encodeURIComponent(routeTo)}&desktop=1`)
+                    // window.open(window.location.href = `${origin}/?redirect=${encodeURIComponent(routeTo)}&desktop=1`)
                 }
             }
 
