@@ -1,5 +1,4 @@
 import { createContext, ReactNode, useCallback, useContext, useEffect, useState } from 'react'
-import { IntercomProvider } from 'react-use-intercom'
 import { baseUri } from '../../modules/apis/straightaway'
 import * as userProvider from '../../modules/user'
 import getErrorMessage from '../../modules/utils/getErrorMessage'
@@ -7,8 +6,6 @@ import { User } from '@/types/Models'
 import Modal from '../Modal'
 import TakeoverModal from '../TakeoverModal'
 import DataContextProvider from './DataContextProvider'
-
-const intercomAppId = process.env.REACT_APP_INTERCOM_APP_ID
 
 // Use undefined! to silence TS warning. We'll populate its values when the component is returned
 const AppContext = createContext<AppContextProviderProps>(undefined!) // eslint-disable-line @typescript-eslint/no-non-null-assertion
@@ -80,7 +77,6 @@ function AppContextProvider({ children, onSignOut }: { children: ReactNode; onSi
                 isDebugBuild: baseUri?.includes('devapi.getstraightaway.com') === true
             }}
         >
-            <IntercomProvider appId={intercomAppId ?? ''}>
                 <DataContextProvider hasUser={user !== undefined}>
                     {isAppInitialized ? (
                         children
@@ -101,7 +97,6 @@ function AppContextProvider({ children, onSignOut }: { children: ReactNode; onSi
                         </Modal>
                     )}
                 </DataContextProvider>
-            </IntercomProvider>
         </AppContext.Provider>
     )
 }

@@ -74,7 +74,7 @@ function DataContextProvider({ children, hasUser }: { children: ReactNode; hasUs
         errorMessage: undefined
     })
 
-    const [fedexInitializationState, setFedexInitializationState] = useState<DataInitializationState>({
+    const [fedexInitializationState] = useState<DataInitializationState>({
         state: 'none',
         errorMessage: undefined
     })

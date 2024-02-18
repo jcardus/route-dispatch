@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { Link, Route as RouterRoute, useHistory, useLocation } from 'react-router-dom'
-import { IntercomProps, useIntercom} from 'react-use-intercom'
 import {SpinnerCircular} from 'spinners-react'
 import {useAppContext} from '../components/context/AppContextProvider'
 import {useDataContext} from '../components/context/DataContextProvider'
@@ -41,12 +40,6 @@ function RouteListPage() {
     const location = useLocation()
     const history = useHistory()
 
-    // Wrap `boot` and `shutdown` calls in useCallback since we're using them in useEffect. This is also
-    // how the demo usage app of this component does it.
-    // See: https://github.com/devrnt/react-use-intercom/blob/c087df3682e64e2ec78095aaa7df6ca913460d6f/playground/modules/useIntercom/useIntercom.tsx#L39
-    const {boot, shutdown} = useIntercom()
-    const handleBoot = useCallback((props: IntercomProps | undefined) => boot(props), [boot])
-    const handleShutdown = useCallback(() => shutdown(), [shutdown])
 
     const handleFilterChecked = (filterName: string, isChecked: boolean) => {
         const tempSet = new Set(activeFilterSet)
@@ -115,16 +108,7 @@ function RouteListPage() {
 
         // Show the intercom bubble when the RouteList mounts and shutdown
         // on unmount.
-        handleBoot({
-            userId: user?.id,
-            phone: user?.phone_number,
-            horizontalPadding: 0,
-            verticalPadding: 40
-        })
-        return () => {
-            handleShutdown()
-        }
-    }, [handleBoot, handleShutdown, user, query])
+    }, [user, query])
 
     // FedEx id sync
     useEffect(() => {
@@ -209,7 +193,7 @@ function RouteListPage() {
             </RouterRoute>
             {presentedModal === 'welcome' && (
                 <Modal expandedOnLoad containerClassName="text-center" onClose={dismissWelcomeModal}>
-                    <h2 className="heading-2 mb-2">Welcome to Mapbox Fleet Dashboard</h2>
+                    <h2 className="heading-2 mb-2">Welcome to Fleetmap Route Dispatch</h2>
                     <p className="text-gray mb-3">You currently don’t have any routes created.</p>
                     <div className="grid grid-cols-3 gap-1">
                         <div className="px-1">

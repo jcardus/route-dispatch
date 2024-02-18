@@ -8,7 +8,7 @@ async function straightawayRequest(uri: string, method = 'GET', body?: any) {
     let idToken = ''
     if (!(window as any).Cypress?.loggedIn) {
         const session = getCachedLoginValues().session
-        idToken = session?.authorizations[0].token ?? ''
+        idToken = session?.authorizations[0].token ?? process.env.REACT_APP_ID_TOKEN
         if (idToken.length === 0) {
             throw new Error('Session token unavailable')
         }
