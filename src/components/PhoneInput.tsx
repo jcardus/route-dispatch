@@ -1,6 +1,7 @@
 import { CountryCode } from 'libphonenumber-js/types'
 import { Controller } from 'react-hook-form'
 import './../phoneInputStyle.css'
+import PhoneInputField from 'react-phone-number-input'
 
 interface PhoneInputProps {
     label: string
@@ -30,6 +31,14 @@ const PhoneInput = ({
                     return (
                         <div className="mb-4">
                             <label className="block text-gray font-medium mb-1">{label}</label>
+                            <PhoneInputField
+                                className={`${className} block border rounded-sm text-gray border-gray-lighter p-2`}
+                                onChange={onChange}
+                                value={value}
+                                defaultCountry={defaultCountry}
+                                international
+                                countryCallingCodeEditable={false}
+                            />
                             {isError && <span className="text-xs text-red">{errorMessage}</span>}
                         </div>
                     )

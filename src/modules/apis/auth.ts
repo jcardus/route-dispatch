@@ -36,19 +36,7 @@ export function getCachedLoginValues(): { session?: MapboxSession; token?: Mapbo
 }
 
 async function getSession(): Promise<any> {
-    const url = appEndpoint + `/api/session?_=${Math.round(Date.now())}`
-    const response = await fetch(url, { credentials: 'include' })
-
-    if (!response.ok) {
-        const errorJson = await response.json()
-        throw new Error(errorJson.message ?? response)
-    }
-
-    return await response.json()
-}
-
-async function getTokens(): Promise<MapboxToken> {
-    const url = appEndpoint + 'core/tokens/v1'
+    const url = appEndpoint + '/api/session'
     const response = await fetch(url, { credentials: 'include' })
 
     if (!response.ok) {
