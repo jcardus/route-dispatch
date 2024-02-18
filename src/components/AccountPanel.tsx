@@ -20,6 +20,7 @@ const AccountPanel = () => {
         panelTriggerClasses.push('panel-background-active')
     }
 
+    // @ts-ignore
     return (
         <div className="relative text-gray-light text-sm">
             <button className={panelTriggerClasses.join(' ')} onClick={() => setIsExpanded(!isExpanded)}>

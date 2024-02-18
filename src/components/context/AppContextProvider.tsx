@@ -1,10 +1,9 @@
 import { createContext, ReactNode, useCallback, useContext, useEffect, useState } from 'react'
 import { IntercomProvider } from 'react-use-intercom'
-import { identify } from '../../modules/apis/segment'
 import { baseUri } from '../../modules/apis/straightaway'
 import * as userProvider from '../../modules/user'
 import getErrorMessage from '../../modules/utils/getErrorMessage'
-import { User } from '../../types/Models'
+import { User } from '@/types/Models'
 import Modal from '../Modal'
 import TakeoverModal from '../TakeoverModal'
 import DataContextProvider from './DataContextProvider'
@@ -31,14 +30,12 @@ function AppContextProvider({ children, onSignOut }: { children: ReactNode; onSi
 
     const setUser = (newUser: User | undefined) => {
         _setUser(newUser)
-        if (newUser) {
-            identify(newUser.id, newUser.fedex_id, newUser.given_name, newUser.family_name, newUser.phone_number, newUser.email)
-        }
     }
 
     const initialize = useCallback(async () => {
         const newUser = await userProvider.getCurrent()
         if (newUser) {
+            // @ts-ignore
             setUser(newUser)
         }
 

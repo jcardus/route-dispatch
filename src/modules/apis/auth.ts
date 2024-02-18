@@ -17,22 +17,10 @@ export interface MapboxToken {
     token: string
 }
 
-export async function login(cacheValues = true): Promise<{ session: MapboxSession; token: MapboxToken }> {
-    const session = await getSession()
-    const token = await getTokens()
-    if (cacheValues) {
-        cacheLoginValues(session, token)
-    }
-    return {
-        session,
-        token
-    }
+export async function login(): Promise<any> {
+    return getSession()
 }
 
-function cacheLoginValues(session: MapboxSession, token: MapboxToken) {
-    window.localStorage.setItem('mapbox_session', JSON.stringify(session))
-    window.localStorage.setItem('mapbox_token', JSON.stringify(token))
-}
 
 export function getCachedLoginValues(): { session?: MapboxSession; token?: MapboxToken } {
     const value: { session?: MapboxSession; token?: MapboxToken } = {}
@@ -47,7 +35,7 @@ export function getCachedLoginValues(): { session?: MapboxSession; token?: Mapbo
     return value
 }
 
-async function getSession(): Promise<MapboxSession> {
+async function getSession(): Promise<any> {
     const url = appEndpoint + `/api/session?_=${Math.round(Date.now())}`
     const response = await fetch(url, { credentials: 'include' })
 
