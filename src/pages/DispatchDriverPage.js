@@ -40,7 +40,7 @@ function DispatchDriverPage() {
 
     return (
         <Modal expandedOnLoad onClose={() => history.goBack()}>
-            <Helmet title="Dispatch Driver | Mapbox Fleet Dashboard"></Helmet>
+            <Helmet title="Dispatch Driver | Fleetmap Route Dispatch"></Helmet>
             <div>
                 <h1 className="heading-2 pb-4 mb-2">{`Dispatch ${route.title}`}</h1>
                 <table className="w-full">

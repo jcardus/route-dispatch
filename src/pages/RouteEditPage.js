@@ -166,7 +166,7 @@ function RouteEditPage() {
 
     return (
         <div className="page-panel--small flex flex-col">
-            <Helmet title={`Edit Route: ${title} | Mapbox Fleet Dashboard`}></Helmet>
+            <Helmet title={`Edit Route: ${title} | Fleetmap Route Dispatch`}></Helmet>
             <div className="z-10 w-96">
                 <div className="header-bar h-16 flex items-center">
                     {isInitialized && (

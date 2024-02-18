@@ -33,7 +33,7 @@ function AccountSettingsPage() {
 
     return (
         <>
-            <Helmet title="Account Settings | Mapbox Fleet Dashboard"></Helmet>
+            <Helmet title="Account Settings | Fleetmap Route Dispatch"></Helmet>
             <h1 className="heading-1 mb-5">Settings</h1>
             <h2 className="heading-2 mb-1 mt-3">Default route start and end points</h2>
             <p>

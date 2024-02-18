@@ -71,7 +71,7 @@ function DispatchDetailPage() {
 
     return (
         <div className="page-panel--small flex flex-col">
-            <Helmet title={`${data?.title || 'Route Detail'} | Mapbox Fleet Dashboard`}></Helmet>
+            <Helmet title={`${data?.title || 'Route Detail'} | Fleetmap Route Dispatch`}></Helmet>
             <div className="fixed z-10 w-96">
                 <div className="header-bar h-16 flex items-center">
                     <div className="px-4 h-6 border-r border-gray-light">

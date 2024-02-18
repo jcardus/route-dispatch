@@ -55,7 +55,7 @@ function CreateRoutePage() {
 
     return (
         <Modal expandedOnLoad wrapContent onClose={() => history.goBack()}>
-            <Helmet title="Create Route | Mapbox Fleet Dashboard"></Helmet>
+            <Helmet title="Create Route | Fleetmap Route Dispatch"></Helmet>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <h1 className="heading-2 pb-4 mb-2">Create a route</h1>
                 <FormInput

@@ -73,7 +73,7 @@ const ImportRoutePage = () => {
 
     return (
         <Modal expandedOnLoad onClose={() => history.goBack()}>
-            <Helmet title="Import Route | Mapbox Fleet Dashboard"></Helmet>
+            <Helmet title="Import Route | Fleetmap Route Dispatch"></Helmet>
             <div className="w-96">
                 <h1 className="heading-2 mb-2">Import a route</h1>
                 <div className="flex justify-between mb-2">

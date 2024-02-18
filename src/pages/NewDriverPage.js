@@ -77,7 +77,7 @@ const NewDriverPage = () => {
                 onClose
             } >
             <
-            Helmet title = "Invite Driver | Mapbox Fleet Dashboard" > < /Helmet> <
+            Helmet title = "Invite Driver | Fleetmap Route Dispatch" > < /Helmet> <
             form onSubmit = {
                 handleSubmit(onSubmit)
             } >

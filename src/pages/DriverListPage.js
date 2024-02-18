@@ -26,7 +26,7 @@ function DriverListPage() {
 
     return (
         <div className="page-panel--large">
-            <Helmet title="Driver List | Mapbox Fleet Dashboard"></Helmet>
+            <Helmet title="Driver List | Fleetmap Route Dispatch"></Helmet>
             <DashboardNavigation />
             <ListFilters filters={driverStatuses} onFilterChecked={handleFilterChecked} />
             <table className="w-full">

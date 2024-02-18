@@ -90,7 +90,7 @@ function SetDefaultPointsPage() {
 
     return (
         <div className="page-panel--small flex flex-col">
-            <Helmet title="Set Default Start and End Points | Mapbox Fleet Dashboard"></Helmet>
+            <Helmet title="Set Default Start and End Points | Fleetmap Route Dispatch"></Helmet>
             <div className="px-5 pt-4">
                 <h1 className="heading-2 mb-2">Set persistent start and end points for your routes</h1>
                 <p>
