@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import AccountPanel from '../AccountPanel'
-import MapboxIcon from '../icons/MapboxIcon'
+import Logo from '../icons/MapboxIcon'
 
 function MainNavigation() {
     return (
@@ -9,10 +9,10 @@ function MainNavigation() {
                 <div className="h-6">
                     <Link to="/" className="flex block content-center" aria-label="Mapbox Fleet Dashboard">
                         <span>
-                            <MapboxIcon className="h-6" />
+                            <Logo className="h-6" />
                         </span>
                         <span className="text-l ml-3 px-4 border-l border-blue whitespace-nowrap">
-                            Fleet Dashboard <span className="align-bottom text-sm font-semibold">Beta</span>
+                            Route Dispatch <span className="align-bottom text-sm font-semibold">Beta</span>
                         </span>
                     </Link>
                 </div>
