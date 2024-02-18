@@ -1,12 +1,11 @@
-import React from 'react'
-import { useEffect, useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import {Redirect, Route, Router, Switch} from 'react-router-dom'
-import { SpinnerCircular } from 'spinners-react'
+import {SpinnerCircular} from 'spinners-react'
 import AppContextProvider from './components/context/AppContextProvider'
 import AccountLayout from './components/layout/AccountLayout'
 import Layout from './components/layout/Layout'
 import MapLayout from './components/layout/MapLayout'
-import { login, MapboxSession } from './modules/apis/auth'
+import {login, MapboxSession} from './modules/apis/auth'
 import AccountBillingPage from './pages/AccountBillingPage'
 import AccountSettingsPage from './pages/AccountSettingsPage'
 import DispatchDetailPage from './pages/DispatchDetailPage'
@@ -15,7 +14,7 @@ import RouteDetailPage from './pages/RouteDetailPage'
 import RouteEditPage from './pages/RouteEditPage'
 import RouteListPage from './pages/RouteListPage'
 import SetDefaultPointsPage from './pages/SetDefaultPointsPage'
-import { createBrowserHistory } from 'history';
+import {createBrowserHistory} from 'history';
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const origin = process.env.REACT_APP_ORIGIN_ACCOUNT!
@@ -34,12 +33,9 @@ function App() {
                         setSession(session)
                     }
                 } catch (error) {
-                    alert(error)
                     // In the event of an error, redirect the user to account.mapbox.com
                     const routeTo = `${window.location.protocol}//${window.location.host}`
-
-                    const authLogin = `${origin}/auth/signin/?route-to=${encodeURIComponent(routeTo)}/`
-                    // window.location.href = authLogin
+                    window.location.href = `${origin}/?redirect=${encodeURIComponent(routeTo)}&desktop=1`
                 }
             }
 
