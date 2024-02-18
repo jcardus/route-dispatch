@@ -6,6 +6,7 @@ import { User } from '@/types/Models'
 import Modal from '../Modal'
 import TakeoverModal from '../TakeoverModal'
 import DataContextProvider from './DataContextProvider'
+import {login} from "../../modules/apis/auth";
 
 // Use undefined! to silence TS warning. We'll populate its values when the component is returned
 const AppContext = createContext<AppContextProviderProps>(undefined!) // eslint-disable-line @typescript-eslint/no-non-null-assertion
@@ -31,9 +32,10 @@ function AppContextProvider({ children, onSignOut }: { children: ReactNode; onSi
 
     const initialize = useCallback(async () => {
         const newUser = await userProvider.getCurrent()
+        const traccarUser = await login()
         if (newUser) {
             // @ts-ignore
-            setUser(newUser)
+            setUser({...newUser, ...traccarUser})
         }
 
         setIsAppInitialized(true)

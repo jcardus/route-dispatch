@@ -48,7 +48,7 @@ const AccountPanel = () => {
                     </Link>
                     <div className="w-full ">
                         <hr className="mt-1 mb-3" />
-                        <div className="font-light text-gray-dark">{user && user.id}</div>
+                        <div className="font-light text-gray-dark">{user && user.email}</div>
                         <div className="flex">
                             <button
                                 className="mt-2 w-full flex items-start font-bold"
