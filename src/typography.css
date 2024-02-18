@@ -1,0 +1,11 @@
+.heading-1 {
+    @apply text-2xl font-medium;
+}
+
+.heading-2 {
+    @apply text-xl font-medium;
+}
+
+.heading-3 {
+    @apply text-lg font-medium;
+}

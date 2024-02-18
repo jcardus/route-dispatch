@@ -1,13 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    @apply bg-white text-black;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+input {
+    font-weight: inherit;
+}
+
+input:focus {
+    outline: none;
+}
+
+select:disabled {
+    opacity: inherit;
+}
+
+a {
+    @apply text-blue;
+}
+
+.button,
+.button-light,
+.button-light-inverted,
+.button-red {
+    @apply inline-flex items-center h-10 px-5 font-medium rounded;
+}
+
+.button {
+    @apply bg-blue text-white shadow;
+}
+
+.button-light {
+    @apply bg-white text-blue border border-blue;
+}
+
+.button-light-inverted {
+    @apply bg-blue text-white border border-white;
+}
+
+.button-red {
+    @apply bg-white text-red border border-red;
+}
+
+.button:disabled {
+    cursor: default;
+    @apply bg-gray-light text-white;
+}
+
+.button-light:disabled,
+.button-light-inverted:disabled,
+.button-red:disabled {
+    cursor: default;
+    @apply border-gray-light text-gray-light;
+}
+
+.page-panel,
+.page-panel--small,
+.page-panel--large {
+    @apply absolute top-0 bottom-0 overflow-y-auto bg-white shadow-2xl pointer-events-auto;
+}
+
+.page-panel--small {
+    @apply w-96;
+}
+
+.page-panel--large {
+    @apply w-5/6;
+    max-width: 768px;
+}
+
+.header-bar {
+    @apply border-b border-gray-lighter bg-gray-lightest;
+}
+
+.video-modal {
+    width: 600px;
+    height: 600px;
+}
+
+@media screen and (max-width: 700px) {
+    .video-modal {
+        width: 400px;
+        height: 400px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .video-modal {
+        width: 300px;
+        height: 300px;
+    }
 }

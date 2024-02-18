@@ -1,0 +1,21 @@
+.panel-background-active::before {
+    content: ' ';
+    @apply fixed inset-0 z-40 block cursor-default bg-transparent;
+}
+
+.panel-link {
+    @apply relative;
+}
+
+.panel-link::before {
+    content: ' ';
+    @apply block absolute top-0 right-0 bg-gray-lighter w-5/6 h-px;
+}
+
+.panel-link:first-child::before {
+    @apply hidden;
+}
+
+.panel-content {
+    min-width: 130px;
+}

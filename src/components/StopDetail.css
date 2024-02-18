@@ -1,0 +1,71 @@
+.stop-icon,
+.stop-icon--edit {
+    border-width: 1.5px;
+    @apply absolute flex text-center w-6 h-6 border-navy rounded-full text-navy bg-white;
+}
+
+.stop-icon,
+.stop-icon--missed,
+.stop-icon--complete {
+    @apply absolute right-0 transform translate-x-1/2;
+}
+
+.stop-icon--complete {
+    @apply text-green;
+}
+
+.stop-icon--missed {
+    @apply text-red;
+}
+
+.stop-icon--edit {
+    @apply relative;
+}
+
+.stop-icon span,
+.stop-icon--edit span {
+    @apply absolute transform top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-sm font-medium;
+}
+
+.stop-icon--start,
+.stop-icon--edit-start {
+    @apply flex text-center w-6 text-green bg-white;
+}
+
+.stop-icon--start {
+    @apply absolute right-0 transform translate-x-1/2 pb-1;
+}
+
+.stop-icon--edit-start {
+    @apply relative;
+}
+
+.stop-icon--end,
+.stop-icon--edit-end {
+    transform: scaleX(-1);
+    @apply flex text-center w-6 text-black bg-white;
+}
+
+.stop-icon--end {
+    transform: scaleX(-1) translateX(-50%);
+    @apply absolute right-0;
+}
+
+.stop-icon--edit-end {
+    @apply relative;
+}
+
+.stop-line {
+    border-right-width: 1.5px;
+    @apply border-dashed;
+}
+
+.stop-line--complete {
+    border-right-width: 1.5px;
+    @apply border-green;
+}
+
+.stop-line--missed {
+    border-right-width: 1.5px;
+    @apply border-red;
+}

@@ -1,0 +1,1 @@
+export const FEDEX_SYNC_HELP = "https://google.com"

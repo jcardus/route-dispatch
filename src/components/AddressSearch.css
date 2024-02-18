@@ -1,0 +1,8 @@
+.mapboxgl-ctrl-geocoder {
+    @apply min-w-full mt-4 shadow-none border border-gray-lighter rounded-sm;
+}
+
+.mapboxgl-ctrl-geocoder--input {
+    padding: 4px 35px;
+    @apply block text-black;
+}
