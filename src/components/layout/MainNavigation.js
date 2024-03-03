@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import AccountPanel from '../AccountPanel'
 import Logo from '../icons/MapboxIcon'
-const version = 'v1.2'
+const version = 'v1.3'
 function MainNavigation() {
     return (
         <header className="relative h-16 z-20 bg-white border-b border-gray-lighter">

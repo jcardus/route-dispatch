@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {Redirect, Route, Router, Switch} from 'react-router-dom'
+import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom'
 import {SpinnerCircular} from 'spinners-react'
 import AppContextProvider from './components/context/AppContextProvider'
 import AccountLayout from './components/layout/AccountLayout'
@@ -14,12 +14,9 @@ import RouteDetailPage from './pages/RouteDetailPage'
 import RouteEditPage from './pages/RouteEditPage'
 import RouteListPage from './pages/RouteListPage'
 import SetDefaultPointsPage from './pages/SetDefaultPointsPage'
-import {createBrowserHistory} from 'history';
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const origin = process.env.REACT_APP_ORIGIN_ACCOUNT!
-
-const customHistory = createBrowserHistory();
 
 function App() {
     const [session, setSession] = useState<MapboxSession | undefined>(undefined)
@@ -55,7 +52,7 @@ function App() {
 
 
     return (
-        <Router history={customHistory}>
+        <BrowserRouter  basename="/route-dispatch">
         <AppContextProvider onSignOut={() => setSession(undefined)}>
             <Layout>
                 <Switch>
@@ -101,7 +98,7 @@ function App() {
                 </Switch>
             </Layout>
         </AppContextProvider>
-        </Router>
+        </BrowserRouter>
     )
 }
 
