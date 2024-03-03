@@ -1,6 +1,7 @@
 {
   "name": "route-dispatch",
   "version": "0.1.0",
+  "homepage": "/route-dispatch",
   "private": true,
   "dependencies": {
     "@mapbox/mapbox-gl-geocoder": "^5.0.2",
