@@ -91,8 +91,16 @@ function RouteEditPage() {
                     ]
                 })
             )
+            const route = getRouteById(routeId)
+            route.stops = update(stops, {
+                $splice: [
+                    [dragIndex, 1],
+                    [hoverIndex, 0, dragCard]
+                ]
+            })
+            setMapRoute({...route})
         },
-        [stops]
+        [stops, routeId, getRouteById, setMapRoute]
     )
 
     const deleteCard = useCallback(
