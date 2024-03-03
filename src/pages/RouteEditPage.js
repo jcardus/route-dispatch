@@ -67,7 +67,7 @@ function RouteEditPage() {
     const addStop = (stop) => {
         setIsAddingStop(true)
         stopsRef.current.push(stop)
-        setStops(stopsRef.current)
+        setStops([...stopsRef.current])
         setIsAddingStop(false)
         track('Route Stop Added', {
             source: 'Search',

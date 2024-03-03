@@ -166,6 +166,7 @@ function RouteDetailPage() {
             route.stops = route.stops.slice(1, -1)
             await updateRoute(route)
             setRoute(route)
+            setMapRoute(route)
         } catch (error) {
             setErrorMessage(getErrorMessage(error))
         } finally {
