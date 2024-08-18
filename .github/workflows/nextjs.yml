@@ -24,6 +24,7 @@ env:
   CI: false
   REACT_APP_API_BASEURI: https://api.getstraightaway.com
   REACT_APP_MAPBOX_ACCESSTOKEN: ${{vars.REACT_APP_MAPBOX_ACCESSTOKEN}}
+  REACT_APP_MAPBOX_API_BASEURI: ${{vars.REACT_APP_MAPBOX_API_BASEURI}}
 
 jobs:
   # Build job
