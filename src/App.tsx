@@ -15,9 +15,6 @@ import RouteEditPage from './pages/RouteEditPage'
 import RouteListPage from './pages/RouteListPage'
 import SetDefaultPointsPage from './pages/SetDefaultPointsPage'
 
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-const origin = process.env.REACT_APP_ORIGIN_ACCOUNT!
-
 function App() {
     const [session, setSession] = useState<MapboxSession | undefined>(undefined)
 
@@ -30,11 +27,7 @@ function App() {
                         setSession(session)
                     }
                 } catch (error) {
-                    // In the event of an error, redirect the user to account.mapbox.com
-                    const routeTo = `${window.location.protocol}//${window.location.host}`
-                    if (window.confirm('Click "ok" to login')) {
-                        window.location.href = `${origin}/?redirect=${encodeURIComponent(routeTo)}&desktop=1`
-                    }
+                    alert(error.message)
                 }
             }
 

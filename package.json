@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "homepage": "/route-dispatch",
   "private": true,
+  "proxy": "http://traccar-eu.fleetmap.pt",
   "dependencies": {
     "@mapbox/mapbox-gl-geocoder": "^5.0.2",
     "@testing-library/jest-dom": "^5.17.0",

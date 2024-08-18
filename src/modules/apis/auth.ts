@@ -1,6 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-const appEndpoint = process.env.REACT_APP_APP_ENDPOINT
-
 export interface MapboxSession {
     email: string
     id: string
@@ -36,12 +33,12 @@ export function getCachedLoginValues(): { session?: MapboxSession; token?: Mapbo
 }
 
 async function getSession(): Promise<any> {
-    const url = appEndpoint + '/api/session'
+    const url = '/api/session'
     const response = await fetch(url, { credentials: 'include' })
 
     if (!response.ok) {
-        const errorJson = await response.json()
-        throw new Error(errorJson.message ?? response)
+        const errorJson = await response.text()
+        throw new Error(errorJson)
     }
 
     return await response.json()
