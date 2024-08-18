@@ -3,11 +3,11 @@ export interface MapboxSession {
     id: string
     customerID: string
     avatar: string
-    authorizations: {
+    attributes: {
         client: string
         id: string
         token: string
-    }[]
+    }
 }
 
 export interface MapboxToken {
@@ -41,5 +41,9 @@ async function getSession(): Promise<any> {
         throw new Error(errorJson)
     }
 
-    return await response.json()
+    const text = await response.text()
+
+    window.localStorage.setItem('mapbox_session', text)
+
+    return JSON.parse(text)
 }
