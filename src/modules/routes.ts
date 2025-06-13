@@ -1,8 +1,8 @@
-import { Coordinate, Route, Stop } from '../types/Models'
+import {Coordinate, Route, Stop} from '@/types/Models'
 import * as mapbox from './apis/mapbox'
 import * as straightaway from './apis/straightaway'
-import { getActiveVersions } from './utils/getActiveVersions'
-import { getLatestVersions } from './utils/getLatestVersions'
+import {getActiveVersions} from './utils/getActiveVersions'
+import {getLatestVersions} from './utils/getLatestVersions'
 
 export const RouteStatuses: { [key: string]: string } = {
     DRAFT: 'Draft',
@@ -13,8 +13,7 @@ export const RouteStatuses: { [key: string]: string } = {
 
 export async function getRoutes() {
     const routesResponse = await straightaway.fetchRoutes()
-    const activeVersions = getActiveVersions(routesResponse.data)
-    return activeVersions
+    return getActiveVersions(routesResponse.data)
 }
 
 export async function fetchRoute(routeId: string) {
@@ -55,8 +54,7 @@ export async function deleteRoute(routeId: string) {
 
 export async function getDispatches() {
     const dispatchesResponse = await straightaway.fetchDispatches()
-    const latestVersions = getLatestVersions(dispatchesResponse.data.dispatches)
-    return latestVersions
+    return getLatestVersions(dispatchesResponse.data.dispatches)
 }
 
 const gwUrl = process.env.REACT_APP_SMS_SERVICE_URL
