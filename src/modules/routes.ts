@@ -59,11 +59,19 @@ export async function getDispatches() {
     return latestVersions
 }
 
+const gwUrl = process.env.REACT_APP_SMS_SERVICE_URL
+const gwToken = process.env.REACT_APP_SMS_SERVICE_TOKEN
+
+function sendSms(phone_number: string, message: string) {
+    return fetch(`${gwUrl}?token=${gwToken}&msisdn=${encodeURIComponent(phone_number)}&message=${encodeURIComponent(message)}`)
+}
+
 export async function createDispatch(routeId: string, driverId: string) {
     await straightaway.updateRoute(routeId, {
         dispatch_to: driverId
     })
     const dispatch = await straightaway.dispatchRoute(routeId)
+    await sendSms(dispatch.data.driven_by_user.phone_number, await generateGoogleMapsUrlFromRoute(dispatch.data))
     return dispatch.data
 }
 
@@ -85,3 +93,38 @@ export async function fetchFedexRoutes(): Promise<Route[]> {
     const response = await straightaway.fetchFedexRoutes()
     return response.data
 }
+/**
+ * Generate Google Maps Directions URL from a route object like yours.
+ * @param {Object} route - Your full route JSON object.
+ * @returns {String} - Google Maps Directions URL.
+ */
+function generateGoogleMapsUrlFromRoute(route: any) {
+    const start = route.start.location;
+    const end = route.end.location;
+
+    const stops = (route.stops || []).map(stop => stop.location);
+
+    const origin = `${start.lat},${start.lon}`;
+    const destination = `${end.lat},${end.lon}`;
+    const waypoints = stops
+        .map(loc => `${loc.lat},${loc.lon}`)
+        .join('|');
+
+    const url = new URL('https://www.google.com/maps/dir/');
+    url.searchParams.set('api', '1');
+    url.searchParams.set('origin', origin);
+    url.searchParams.set('destination', destination);
+    url.searchParams.set('travelmode', 'driving');
+    if (waypoints) {
+        url.searchParams.set('waypoints', waypoints);
+    }
+
+    return shortenUrl(url.toString());
+}
+
+async function shortenUrl(longUrl: string) {
+    const response = await fetch(`https://tinyurl.com/api-create.php?url=${encodeURIComponent(longUrl)}`);
+    if (!response.ok) throw new Error('Failed to shorten URL');
+    return response.text();
+}
+
