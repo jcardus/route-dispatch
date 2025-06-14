@@ -65,12 +65,22 @@ function sendSms(phone_number: string, message: string) {
 }
 
 export async function createDispatch(routeId: string, driverId: string) {
-    await straightaway.updateRoute(routeId, {
-        dispatch_to: driverId
-    })
-    const dispatch = await straightaway.dispatchRoute(routeId)
-    await sendSms(dispatch.data.driven_by_user.phone_number, await generateGoogleMapsUrlFromRoute(dispatch.data))
-    return dispatch.data
+    let dispatch
+    try {
+        await straightaway.updateRoute(routeId, {
+            dispatch_to: driverId
+        })
+        dispatch = await straightaway.dispatchRoute(routeId).then(r => r.data)
+    } catch (err) {
+        console.error(err)
+    }
+    if (!dispatch) {
+        const route = await fetchRoute(routeId)
+        const {dispatches} = await straightaway.fetchDispatches().then(r => r.data)
+        dispatch = dispatches.find((d) => d.route_id === route.id && d.route_version === route.version)
+    }
+    await sendSms(dispatch.driven_by_user.phone_number, await generateGoogleMapsUrlFromRoute(dispatch))
+    return dispatch
 }
 
 export async function fetchDispatch(dispatchId: string) {
@@ -91,12 +101,13 @@ export async function fetchFedexRoutes(): Promise<Route[]> {
     const response = await straightaway.fetchFedexRoutes()
     return response.data
 }
+
 /**
  * Generate Google Maps Directions URL from a route object like yours.
  * @param {Object} route - Your full route JSON object.
  * @returns {String} - Google Maps Directions URL.
  */
-function generateGoogleMapsUrlFromRoute(route: any) {
+function generateGoogleMapsUrlFromRoute(route: any): Promise<string> {
     const start = route.start.location;
     const end = route.end.location;
 

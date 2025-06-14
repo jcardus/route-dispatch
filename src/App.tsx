@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom'
+import {HashRouter, Redirect, Route, Switch} from 'react-router-dom'
 import {SpinnerCircular} from 'spinners-react'
 import AppContextProvider from './components/context/AppContextProvider'
 import AccountLayout from './components/layout/AccountLayout'
@@ -45,7 +45,7 @@ function App() {
 
 
     return (
-        <BrowserRouter  basename="/route-dispatch">
+        <HashRouter  basename="/route-dispatch">
         <AppContextProvider onSignOut={() => setSession(undefined)}>
             <Layout>
                 <Switch>
@@ -91,7 +91,7 @@ function App() {
                 </Switch>
             </Layout>
         </AppContextProvider>
-        </BrowserRouter>
+        </HashRouter>
     )
 }
 
