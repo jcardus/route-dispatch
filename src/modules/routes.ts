@@ -61,7 +61,7 @@ const gwUrl = process.env.REACT_APP_SMS_SERVICE_URL
 const gwToken = process.env.REACT_APP_SMS_SERVICE_TOKEN
 
 function sendSms(phone_number: string, message: string) {
-    return fetch(`${gwUrl}?token=${gwToken}&msisdn=${encodeURIComponent(phone_number)}&message=${encodeURIComponent(message)}`)
+    return fetch(`${gwUrl}?gateway=sns&token=${gwToken}&msisdn=${encodeURIComponent(phone_number.replace('+', ''))}&message=${encodeURIComponent(message)}`)
 }
 
 export async function createDispatch(routeId: string, driverId: string) {
