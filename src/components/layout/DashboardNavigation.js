@@ -1,22 +1,24 @@
 import { Link, useLocation } from 'react-router-dom'
 import DriversIcon from '../icons/DriversIcon'
 import RoutesIcon from '../icons/RoutesIcon'
+import { useTranslation } from 'react-i18next'
 
-const tabs = [
-    {
-        url: '/routes',
-        label: 'Routes',
-        icon: <RoutesIcon />
-    },
-    {
-        url: '/drivers',
-        label: 'Drivers',
-        icon: <DriversIcon />
-    }
-]
 
 const DashboardNavigation = () => {
     const { pathname } = useLocation()
+    const { t } = useTranslation()
+    const tabs = [
+        {
+            url: '/routes',
+            label: t('Routes'),
+            icon: <RoutesIcon />
+        },
+        {
+            url: '/drivers',
+            label: t('Drivers'),
+            icon: <DriversIcon />
+        }
+    ]
 
     return (
         <div className="header-bar h-16">

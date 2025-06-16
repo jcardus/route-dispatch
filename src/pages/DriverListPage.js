@@ -28,7 +28,9 @@ function DriverListPage() {
         <div className="page-panel--large">
             <Helmet title="Driver List | Fleetmap Route Dispatch"></Helmet>
             <DashboardNavigation />
-            <ListFilters filters={driverStatuses} onFilterChecked={handleFilterChecked} />
+            <div className="px-5 flex flex-row space-around items-center justify-between">
+                <ListFilters filters={driverStatuses} onFilterChecked={handleFilterChecked} />
+            </div>
             <table className="w-full">
                 <thead className="header-bar border-t h-14 text-left">
                     <tr>

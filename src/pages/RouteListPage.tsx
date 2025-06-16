@@ -23,6 +23,7 @@ import {useQuery} from '../modules/utils/useQueryHook'
 import {Route} from '../types/Models'
 import CreateRoutePage from './CreateRoutePage'
 import ImportRoutePage from './ImportRoutePage'
+import { useTranslation } from 'react-i18next'
 
 const routeStatuses = Object.keys(RouteStatuses).map((key) => RouteStatuses[key])
 
@@ -134,7 +135,7 @@ function RouteListPage() {
         }
         update()
     }, [updateFedexRoutes])
-
+    const {t} = useTranslation()
     const groupedRoutes = groupAndSortRoutes(routes)
     return (
         <div className="page-panel--large">
@@ -181,11 +182,11 @@ function RouteListPage() {
             <div className="my-5 ml-4">
                 <Link className="button" to="/routes/new">
                     <RoutesIcon />
-                    <div className="ml-1.5">Create Route</div>
+                    <div className="ml-1.5">{t('Create Route')}</div>
                 </Link>
                 <Link className="button ml-2" to="/routes/import">
                     <ImportSmallIcon />
-                    <div className="ml-1.5">Import Route</div>
+                    <div className="ml-1.5">{t('Import Route')}</div>
                 </Link>
             </div>
             <RouterRoute path="/routes/new">
