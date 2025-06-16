@@ -60,8 +60,10 @@ export async function getDispatches() {
 const gwUrl = process.env.REACT_APP_SMS_SERVICE_URL
 const gwToken = process.env.REACT_APP_SMS_SERVICE_TOKEN
 
-function sendSms(phone_number: string, message: string) {
-    return fetch(`${gwUrl}?gateway=sns&token=${gwToken}&msisdn=${encodeURIComponent(phone_number.replace('+', ''))}&message=${encodeURIComponent(message)}`)
+async function sendSms(phone_number: string, url: string, driver: string) {
+    const message = `Olá ${driver}, a sua rota foi criada. Navegar: ${url}`
+    await fetch(`https://whatsapp.joaquim.workers.dev?lang=en&driver_name=${driver}&to=${phone_number}&code=${url.split('/').pop()}`)
+    return fetch(`${gwUrl}?gateway=sns&token=${gwToken}&msisdn=${encodeURIComponent(phone_number)}&message=${encodeURIComponent(message)}`)
 }
 
 export async function createDispatch(routeId: string, driverId: string) {
@@ -79,7 +81,7 @@ export async function createDispatch(routeId: string, driverId: string) {
         const {dispatches} = await straightaway.fetchDispatches().then(r => r.data)
         dispatch = dispatches.find((d) => d.route_id === route.id && d.route_version === route.version)
     }
-    await sendSms(dispatch.driven_by_user.phone_number, await generateGoogleMapsUrlFromRoute(dispatch))
+    await sendSms(dispatch.driven_by_user.phone_number, await generateGoogleMapsUrlFromRoute(dispatch), dispatch.driven_by_user.name)
     return dispatch
 }
 
